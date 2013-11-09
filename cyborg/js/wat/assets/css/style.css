@@ -1,0 +1,61 @@
+ body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+		background-color:#ccc;
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 900px;
+		padding:15px;
+		background-color:white;
+		-webkit-border-radius: 20px;
+		-moz-border-radius: 20px;
+		border-radius: 20px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 0 auto;
+        text-align: center;
+		background-color:#94C1F2;
+		padding:15px;
+		-webkit-border-radius: 20px;
+		-moz-border-radius: 20px;
+		border-radius: 20px;
+      }
+      .jumbotron h1 {
+        font-size: 72px;
+        line-height: 1;
+		font-family: 'Life Savers', cursive;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+		font-family: 'Life Savers', cursive;
+      }
+	  .muted {
+		font: 48px/1 'Yanone Kaffeesatz', sans-serif;
+	  }
+	  .muted span{
+		font: 12px/1 'Yanone Kaffeesatz', sans-serif;
+	  }
+	  .muted b{
+		font: 48px/1 'Yanone Kaffeesatz', sans-serif;
+		color: #0088cc;
+	  }
+	  .hero-unit {
+		background-color:#94C1F2;
+	  } 
+	  .hero-unit h3{
+		font-family: 'Life Savers', cursive;
+	  }
+	 
+	  .nav li{
+		width:110px;
+		text-align:center;
+	  }

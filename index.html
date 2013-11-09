@@ -14,6 +14,13 @@
     <!-- Bootstrap core CSS -->
     <link href="./cyborg/css/bootstrap.min.css" rel="stylesheet">
 	<style>
+		iframe {
+			width:0;
+			height:0;
+			border:0px;
+			outline:none;
+			display:none;
+		}
 		body {
 			padding-top:40px;
 		}
@@ -44,6 +51,21 @@
 		#step2,#step3 {
 			display:none;
 		}
+		.modal-dialog {
+			margin:10% auto;
+		}
+		.nav li > a:hover{
+			background:#2A9FD6;
+		}	
+		.nav li > a:active{
+			background:#2A9FD6;
+		}
+		.notyet {
+			display:none;
+		}
+		.progress {
+			display:none;
+		}
 	</style>
    
 
@@ -62,21 +84,28 @@
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
+          </button> -->
+		  <button type="button" class="navbar-toggle" data-toggle="modal" data-target="#menu">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+   
+		  </button>
           <a class="navbar-brand" href="#">Icenium</a>
         </div>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse" id="navbar">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#download">Downloader</a></li>
-            <li><a href="#about">How to Use</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about"  data-toggle="modal" data-target="#not">How to Use</a></li>
+            <li><a href="#about"  data-toggle="modal" data-target="#not">About</a></li>
+            <li><a href="#contact"  data-toggle="modal" data-target="#not">Contact</a></li>
             
           </ul>
         </div><!--/.nav-collapse -->
@@ -102,16 +131,19 @@
 				<span class="glyphicon glyphicon-question-sign"></span><strong> Instructions</strong>
 				Get the wattcode of the chapter of the book you want to download
 			  </div>
-			  <!-- <div class="well"> -->
+			 
 				<div class="form">
 					<div class="input-group">
-						<input type="text" value="2938725" class="wattcode form-control">
+						<input type="text" value="21045145" class="wattcode form-control">
 						<span class="input-group-btn">
 						  <button class="run btn btn-primary" type="button"><span class="glyphicon glyphicon-save"></span> Download</button>
 						</span>
 					</div>
-				<!-- </div> -->
-			  </div> 
+				
+			  </div>
+			  <div class="progress progress-striped active">
+                <div class="progress-bar" style="width: 100%"></div>
+              </div>
             </div><!--  panel body end -->
 			<div class="panel-footer">
 				<cite class="status">idle</cite>
@@ -129,12 +161,30 @@
 				</div>
 			<div class="row">
               <div class="col-lg-12">
-				
-				  <div class="list-group">
+				<div class="progress progress-striped active">
+					<div class="progress-bar" style="width: 0%"></div>
+				</div>
+				 
 					
-					
-				  </div>
-				
+					<div class="panel-group" id="accordion">
+					  <div class="panel panel-primary">
+					   
+					  <div class="panel panel-primary">
+						<div class="panel-heading">
+						  <h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+							  Details
+							</a>
+						  </h4>
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse">
+						  <div class="panel-body">
+						   <div class="list-group">	  </div> <!-- DOWNLOADS GOES HERE -->
+						  </div>
+						</div>
+					  </div>
+					 </div>
+					</div>
 			  </div>
 			</div>
             </div>
@@ -148,22 +198,29 @@
               <h3 class="panel-title">Step 3</h3>
             </div>
             <div class="panel-body">
-              <div class="alert alert-done">
+              <div class="alert dl-done">
 				<span class="glyphicon glyphicon-question-sign"></span><strong> Please wait</strong>
 				Packaging the book...
 			  </div>
 			  <div class="well">
 				<h3>Click to download package</h3>
 				<div class="row">
-					<div class="col-sm-4">
-						<button id="ice" class="btn btn-success btn-block" rel="google.com">ICE Package</button>
+					<div class="col-sm-3">
+						<button id="txt" class="btn btn-success btn-block notyet" rel="" >TXT Package</button>
 					</div>
-					<div class="col-sm-4">
-						<button class="btn btn-info btn-block">ZIP Package</button>
+					<div class="col-sm-3">
+						<button id="zip" class="btn btn-info btn-block notyet" rel="">ZIP Package</button>
 					</div>
-					<div class="col-sm-4">
-						<button class="btn btn-primary btn-block">JAR Package</button>
+					<div class="col-sm-3">
+						<button id="ice" class="btn btn-primary btn-block notyet" rel="">ICE Package</button>
 					</div>
+					
+					<div class="col-sm-3">
+						<button id="pdf" class="btn btn-warning btn-block notyet" rel="">PDF Package</button>
+					</div>
+				</div>
+				<div class="progress progress-striped active">
+					<div class="progress-bar" style="width: 100%"></div>
 				</div>
 			  </div> 
             </div><!--  panel body end -->
@@ -188,6 +245,47 @@
     <script src="./cyborg/js/bootstrap.min.js"></script>
     <script src="./cyborg/js/holder.js"></script>
     <script src="./cyborg/js/script.js"></script>
-	
+
+		<!-- Modal -->
+		<div class="modal fade" id="menu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Menu</h4>
+			  </div>
+			  <div class="modal-body">
+					<ul class="nav nav-pills nav-stacked">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#">Downloader</a></li>
+						<li><a href="#">How to Use</a></li>
+						<li><a href="#">Abouts</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			  </div>
+			</div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		
+		<div class="modal fade" id="not" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Notice</h4>
+			  </div>
+			  <div class="modal-body">
+					<h3>Not yet implemented</h3>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			  </div>
+			</div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
   </body>
 </html>
+<iframe src="" name="dl"></iframe>
