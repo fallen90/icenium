@@ -17,12 +17,16 @@
 		body {
 			padding-top:40px;
 		}
-		.alert-active {
+		.container {
+			min-width:70%;
+		}
+		
+		.dl-active {
 			background-color:#77B300 !important;
 			color:white !important;
 
 		}
-		.alert-done {
+		.dl-done {
 			background-color:#2A9FD6 !important;
 			color:white !important;
 		}
@@ -30,6 +34,15 @@
 			background-image:url('./cyborg/loader-white.gif');
 			background-size:cover;
 			padding:1px 9px;
+		}
+		#steps {
+			margin:0 auto;
+		}
+		#step1,#step2,#step3 {
+			margin:20px auto;
+		}
+		#step2,#step3 {
+			display:none;
 		}
 	</style>
    
@@ -77,26 +90,27 @@
         <h1>Downloader</h1>
       </div>
      
-	 <div class="row">
-        <div class="col-sm-12">
-          <div class="panel panel-primary">
+	 <div class="row" >
+	 <div class="col-sm-1"></div>
+        <div id="steps"	class="col-sm-10">
+          <div class="panel panel-primary " id="step1">
             <div class="panel-heading">
               <h3 class="panel-title">Step 1</h3>
             </div>
             <div class="panel-body">
-              <div class="alert alert-done">
+              <div class="alert dl-done">
 				<span class="glyphicon glyphicon-question-sign"></span><strong> Instructions</strong>
 				Get the wattcode of the chapter of the book you want to download
 			  </div>
-			  <div class="well">
+			  <!-- <div class="well"> -->
 				<div class="form">
 					<div class="input-group">
-						<input type="text" class="form-control">
+						<input type="text" value="2938725" class="wattcode form-control">
 						<span class="input-group-btn">
-						  <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-save"></span> Download</button>
+						  <button class="run btn btn-primary" type="button"><span class="glyphicon glyphicon-save"></span> Download</button>
 						</span>
 					</div>
-				</div>
+				<!-- </div> -->
 			  </div> 
             </div><!--  panel body end -->
 			<div class="panel-footer">
@@ -104,12 +118,12 @@
 			</div>
           </div> <!-- panel end -->
 		  
-          <div class="panel panel-primary">
+          <div class="panel panel-primary" id="step2">
             <div class="panel-heading">
               <h3 class="panel-title">Step 2</h3>
             </div>
             <div class="panel-body">
-				<div class="alert alert-done">
+				<div class="alert dl-done">
 					<span class="glyphicon glyphicon-question-sign"></span><strong> Instructions</strong>
 					Wait for the download to finish
 				</div>
@@ -117,19 +131,8 @@
               <div class="col-lg-12">
 				
 				  <div class="list-group">
-					<span href="#" class="list-group-item alert-active">
-						Cras justo odio
-						<span class="badge"><span class="glyphicon glyphicon-ok"></span></span>
-					</span>
-					<span href="#" class="list-group-item alert-done">
-						<span class="badge">
-							<span class="load"></span>
-						</span>
-						Dapibus ac facilisis in
-					</span>
-					<span href="#" class="list-group-item">
-						Morbi leo risus
-					</span>
+					
+					
 				  </div>
 				
 			  </div>
@@ -140,7 +143,7 @@
 			</div>
 			
           </div> <!-- end of panel -->
-		    <div class="panel panel-primary">
+		    <div class="panel panel-primary" id="step3">
             <div class="panel-heading">
               <h3 class="panel-title">Step 3</h3>
             </div>
@@ -184,16 +187,7 @@
     <script src="./cyborg/js/jquery.js"></script>
     <script src="./cyborg/js/bootstrap.min.js"></script>
     <script src="./cyborg/js/holder.js"></script>
-	<script>
-		$('#ice').on('click', function() {
-			url = $(this).attr("rel");   
-			loadURL(url);
-		});
-
-		function loadURL(url){
-			navigator.app.loadUrl(url, { openExternal:true });
-			return false;
-		} 
-	</script>
+    <script src="./cyborg/js/script.js"></script>
+	
   </body>
 </html>
