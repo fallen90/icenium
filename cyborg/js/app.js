@@ -127,12 +127,14 @@
 			$("#chap" + wattcode).children(".badge").children("span").attr("class","glyphicon glyphicon-ok");
 		}
 		$('#txt').click(function(){
+			write("Downloading TXT Package...");	
 			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/" + $(this).attr('rel');
 			var url = rel_data;
           	downloadFile(url);
 
 		});
 		$('#zip').click(function(){
+			write("Downloading TXT Package...");	
 			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/packages/" + $(this).attr('rel');
 			var url = rel_data;
 				downloadFile(url);
@@ -147,16 +149,20 @@
 		
 		//mobile taps
 		$('#txt').on("touchstart",function(){
+			write("Downloading TXT Package...");	
 			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/" + $(this).attr('rel');
 			var url = rel_data;
+			
           	downloadFile(url);
 
 		});
 		$('#zip').on("touchstart",function(){
+			write("Downloading ZIP Package...");
 			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/packages/" + $(this).attr('rel');
 			var url = rel_data;
+			
           	downloadFile(url);
-
+			
 		});
 		$('#ice').on("touchstart",function(){
 			$('#not').modal('toggle');
@@ -187,6 +193,7 @@
 	
 	function downloadFile(urlx){
 			url = urlx;
+			
 			 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
 				console.log("Root = " + fs.root.fullPath);
 				fs.root.getDirectory("icenium", {create: true, exclusive: false},
