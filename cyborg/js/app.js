@@ -86,6 +86,7 @@
 												var packs = $.parseJSON(data);
 												$('#txt').attr('rel',basename(packs['txt'])).removeClass("notyet");
 												$('#zip').attr('rel',basename(packs['zip'])).removeClass("notyet");
+												$('.bookid').attr('rel',$pack['bookid']);
 												$('.progress').fadeOut();
 											} catch(ex){
 												write("Error Fetching Packages");
@@ -162,6 +163,9 @@
 		$('#pdf').on("touchstart",function(){
 			$('#not').modal('toggle');
 		});
+		$('#start').on("touchstart",function(){
+			window.location.reload(true);
+		});
 		function loadURL(url){
 			navigator.app.loadUrl(url, { openExternal:true });
 			return false;
@@ -185,7 +189,27 @@
 				console.log("Root = " + fs.root.fullPath);
 				fs.root.getDirectory("icenium", {create: true, exclusive: false},
 					function(dirEntry) {
-						dirEntry.getFile("newFile.txt", {create: true,
+						gotDir
+					}, function (error) {
+					   alert(error.code);
+					}
+				);
+		   }, function (error) {
+				   alert(error.code);
+		   });
+	}
+	
+	function gotDir(dirEntry){		
+			fs.root.getDirectory($('.bookid').attr("rel"), {create: true, exclusive: false},
+			function(dirEntry) {
+						gotDirEntry
+					}, function (error) {
+					   alert(error.code);
+					}
+				);
+	}
+	function gotDirEntry(dirEntry){		
+			dirEntry.getFile("newFile.txt", {create: true,
 	exclusive: false}, function (fileEntry) {
 							 var sPath = fileEntry.fullPath.replace("newFile.txt","");
 							var fileTransfer = new FileTransfer();
@@ -194,9 +218,10 @@
 									url,
 									sPath + basename(url),
 									function(theFile) {
-										alert("download complete: " + theFile.toURI());
+										$('.path').html(sPath + basename(url));
+										$('#done').modal('show');
 										console.log("download complete: " + theFile.toURI());
-										showLink(theFile.toURI());
+										
 									},
 									function(error) {
 										console.log("download error source " + error.source);
@@ -208,16 +233,6 @@
 						}, function (error) {
 							alert(error.code);
 						});
-					}, function (error) {
-					   alert(error.code);
-					}
-				);
-		   }, function (error) {
-				   alert(error.code);
-		   });
 	}
-	
-	
-	
 	
 	
