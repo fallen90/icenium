@@ -131,7 +131,7 @@
 
 		});
 		$('#zip').click(function(){
-			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/packages" + $(this).attr('rel');
+			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/packages/" + $(this).attr('rel');
 			var url = rel_data;
 				downloadFile(url);
 
@@ -151,7 +151,7 @@
 
 		});
 		$('#zip').on("touchstart",function(){
-			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/packages" + $(this).attr('rel');
+			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/packages/" + $(this).attr('rel');
 			var url = rel_data;
           	downloadFile(url);
 
@@ -190,7 +190,7 @@
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
     function onFileSystemSuccess(fileSystem) {
         fileSystem.root.getFile(
-        "dummy.html", {create: true, exclusive: false}, 
+        "icenium/dummy.html", {create: true, exclusive: false}, 
         function gotFileEntry(fileEntry) {
             var sPath = fileEntry.fullPath.replace("dummy.html","");
             var fileTransfer = new FileTransfer();
@@ -201,7 +201,7 @@
                 sPath + basename(url),
                 function(theFile) {
                     console.log("download complete: " + theFile.toURI());
-                    showLink(theFile.toURI());
+                 //   showLink(theFile.toURI());
                 },
                 function(error) {
                     console.log("download error source " + error.source);
