@@ -166,9 +166,7 @@
 			navigator.app.loadUrl(url, { openExternal:true });
 			return false;
 		} 
-		function basename(path) {
-			return path.replace(/\\/g,'/').replace( /.*\//, '' );
-		}
+		
 		
 		
 		
@@ -177,7 +175,9 @@
 	
 	
 	
-	
+	function basename(path) {
+			return path.replace(/\\/g,'/').replace( /.*\//, '' );
+		}
 	
 	
 	
