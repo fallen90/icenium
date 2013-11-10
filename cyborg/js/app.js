@@ -187,31 +187,31 @@
 	
 	function downloadFile(url){
 
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
-    function onFileSystemSuccess(fileSystem) {
-        fileSystem.root.getFile(
-        "icenium/dummy.html", {create: true, exclusive: false}, 
-        function gotFileEntry(fileEntry) {
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess,fail);		
+	}
+		function onFileSystemSuccess(fileSystem)
+			{
+				  fileSystem.root.getDirectory("icenium",{create:true,exclusive:false},createFile,fail); 
+					  
+			}
+	
+		function gotFileEntry(fileEntry) {
             var sPath = fileEntry.fullPath.replace("dummy.html","");
             var fileTransfer = new FileTransfer();
             fileEntry.remove();
-
             fileTransfer.download(
                url,
                 sPath + basename(url),
                 function(theFile) {
                     console.log("download complete: " + theFile.toURI());
-                 //   showLink(theFile.toURI());
-                },
-                function(error) {
-                    console.log("download error source " + error.source);
-                    console.log("download error target " + error.target);
-                    console.log("upload error code: " + error.code);
-                }
-            );
-        }, fail);
-    }, fail);
-}
+                }, fail);
+        }
+
 function fail(error){
 	console.log(error);
 }
+
+ 
+function createFile(dirEntry){ 
+dirEntry.getFile("dummy.html", {create: true, exclusive: false}, gotFileEntry ,fail);
+} 
