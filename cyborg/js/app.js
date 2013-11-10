@@ -131,14 +131,14 @@
 			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/" + $(this).attr('rel');
 			var url = rel_data;
           	downloadFile(url);
-
+			write("Download Done!");	
 		});
 		$('#zip').click(function(){
-			write("Downloading TXT Package...");	
+			write("Downloading ZIP Package...");	
 			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/packages/" + $(this).attr('rel');
 			var url = rel_data;
 				downloadFile(url);
-
+			write("Download Done!");	
 		});
 		$('#ice').click(function(){
 			$('#not').modal('toggle');
@@ -224,6 +224,7 @@
 									sPath + basename(url),
 									function(theFile) {
 										$('.path').html(sPath + basename(url));
+										$('#path').attr("href",sPath + basename(url));
 										$('#done').modal('show');
 										console.log("download complete: " + theFile.toURI());
 										

@@ -66,6 +66,9 @@
 		.progress {
 			display:none;
 		}
+		.path {
+			word-wrap:break-word;
+		}
 	</style>
    
 
@@ -305,8 +308,11 @@
 				<h4 class="modal-title" id="myModalLabel">Download Done</h4>
 			  </div>
 			  <div class="modal-body">
-					<h4>The file has been saved on : <span class="path"></span></h4>
-					<h5>if you dont know that, just go to your SDCard > icenium folder and you'll see the download files there.</h5>
+					<div class="well">
+						<h4>The file has been saved on : <span class="path"></span></h4>
+						<h5>if you dont know that, just go to your SDCard > icenium folder and you'll see the download files there.</h5>
+						<a href="" class="btn btn-primary btn-block" id="path">Open File</a>
+					</div>
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
