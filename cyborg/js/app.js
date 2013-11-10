@@ -92,7 +92,8 @@
 												json['bookid'] = packs['bookid'];
 												json['bookid']['zip'] = basename(packs['zip']);
 												json['bookid']['txt'] = basename(packs['txt']);
-												saveJSON(json);
+												var json_contents  = $.parseJSON(json);
+												saveJSON(json_contents);
 												$('.progress').fadeOut();
 											} catch(ex){
 											console.log(ex );
