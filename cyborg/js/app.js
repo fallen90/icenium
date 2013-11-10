@@ -86,10 +86,11 @@
 												var packs = $.parseJSON(data);
 												$('#txt').attr('rel',basename(packs['txt'])).removeClass("notyet");
 												$('#zip').attr('rel',basename(packs['zip'])).removeClass("notyet");
-												$('.bookid').attr('rel',$pack['bookid']);
+												$('.bookid').attr('rel',packs['bookid']);
 												$('.progress').fadeOut();
 											} catch(ex){
-												write("Error Fetching Packages");
+											console.log(ex );
+												write( "Error Fetching Packages");
 											}
 										 });
 										 
