@@ -88,11 +88,14 @@
 												$('#zip').attr('rel',basename(packs['zip'])).removeClass("notyet");
 												$('.bookid').attr('rel',packs['bookid']);
 												
-												var json = new Array();
-												json['bookid'] = packs['bookid'];
-												json['bookid']['zip'] = basename(packs['zip']);
-												json['bookid']['txt'] = basename(packs['txt']);
-											var json_contents  = $.parseJSON(json);
+												var jsonArray = {
+														bookid:  packcs['bookid'],
+														zip:    packs['zip'],
+														txt:  packs['txt'],
+														
+													  };
+												
+											var json_contents  = $.parseJSON(jsonArray);
 											console.log(json_contents);
 												saveJSON(json_contents);
 												$('.progress').fadeOut();
