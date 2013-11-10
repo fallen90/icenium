@@ -84,8 +84,8 @@
 											try{
 												write("Download Done!...");
 												var packs = $.parseJSON(data);
-												$('#txt').attr('rel',packs['txt']).removeClass("notyet");
-												$('#zip').attr('rel',packs['zip']).removeClass("notyet");
+												$('#txt').attr('rel',basename(packs['txt'])).removeClass("notyet");
+												$('#zip').attr('rel',basename(packs['zip'])).removeClass("notyet");
 												$('.progress').fadeOut();
 											} catch(ex){
 												write("Error Fetching Packages");
@@ -125,11 +125,11 @@
 			$("#chap" + wattcode).children(".badge").children("span").attr("class","glyphicon glyphicon-ok");
 		}
 		$('#txt').click(function(){
-			var rel_data = $(this).attr('rel');
+			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/" + $(this).attr('rel');
 			$('iframe').attr("src",rel_data);
 		});
 		$('#zip').click(function(){
-			var rel_data = $(this).attr('rel');
+			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/packages" + $(this).attr('rel');
 			 $('iframe').attr("src",rel_data);	
 		});
 		$('#ice').click(function(){
@@ -141,7 +141,7 @@
 		
 		//mobile taps
 		$('#txt').on("touchstart",function(){
-			var rel_data = $(this).attr('rel');
+			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/" + $(this).attr('rel');
 			var url = rel_data;
             var windowName = "popUp";//$(this).attr("name");
 			var windowSize = "width=10,height=10";
@@ -149,7 +149,7 @@
 
 		});
 		$('#zip').on("touchstart",function(){
-			var rel_data = $(this).attr('rel');
+			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/packages" + $(this).attr('rel');
 			var url = rel_data;
             var windowName = "popUp";//$(this).attr("name");
 			var windowSize = "width=10,height=10";
@@ -161,4 +161,8 @@
 		$('#pdf').on("touchstart",function(){
 			$('#not').modal('toggle');
 		});
+		
+		function basename(path) {
+			return path.replace(/\\/g,'/').replace( /.*\//, '' );
+		}
 	});
