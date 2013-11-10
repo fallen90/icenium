@@ -126,11 +126,15 @@
 		}
 		$('#txt').click(function(){
 			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/" + $(this).attr('rel');
-			loadURL(url);
+			var url = rel_data;
+          	downloadFile(url);
+
 		});
 		$('#zip').click(function(){
 			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/packages" + $(this).attr('rel');
-			 loadURL(url);
+			var url = rel_data;
+				downloadFile(url);
+
 		});
 		$('#ice').click(function(){
 			$('#not').modal('toggle');
@@ -143,13 +147,14 @@
 		$('#txt').on("touchstart",function(){
 			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/" + $(this).attr('rel');
 			var url = rel_data;
-            loadURL(url);
+          	downloadFile(url);
 
 		});
 		$('#zip').on("touchstart",function(){
 			var rel_data = "http://w2a.us.to/cyborg/wat/jasper/builds/packages" + $(this).attr('rel');
 			var url = rel_data;
-            loadURL(url);
+          	downloadFile(url);
+
 		});
 		$('#ice').on("touchstart",function(){
 			$('#not').modal('toggle');
