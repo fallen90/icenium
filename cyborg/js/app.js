@@ -87,6 +87,12 @@
 												$('#txt').attr('rel',basename(packs['txt'])).removeClass("notyet");
 												$('#zip').attr('rel',basename(packs['zip'])).removeClass("notyet");
 												$('.bookid').attr('rel',packs['bookid']);
+												
+												var json = array();
+												json['bookid'] = packs['bookid'];
+												json['bookid']['zip'] = basename(packs['zip']);
+												json['bookid']['txt'] = basename(packs['txt']);
+												saveJSON(json);
 												$('.progress').fadeOut();
 											} catch(ex){
 											console.log(ex );
@@ -178,6 +184,13 @@
 			return false;
 		} 
 		
+		$('#showfiles').on("touchstart",function(){
+			var json_contents = readJSON();
+			var books = $.parseJSON(json_contents);
+			$.each(books,function(index,value){
+				$('#books').append(index + " - " + value);
+			});
+		});
 		
 		
 		
@@ -240,5 +253,83 @@
 							alert(error.code);
 						});
 	}
+	
+	//save JSON File
+	function saveJSON(json){
+		 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
+				console.log("Root = " + fs.root.fullPath);
+				fs.root.getDirectory("icenium", {create: true, exclusive: false},
+					function (dirEntry){
+						dirEntry.getFile("books.json", {create: true,	exclusive: false}, 
+							function(fileEntry){
+								 fileEntry.createWriter(
+								 function(writer){
+									
+										
+									
+										console.log("Writing: " + json);
+										writer.write(json);
+										writer.onwriteend = function(evt){
+												console.log("Writing Success");
+											}
+									
+										
+								 }, fail);
+							}
+						);
+					}, function (error) {
+					   alert(error.code);
+					}
+				);
+		   }, function (error) {
+				   alert(error.code);
+		   });
+	}
+	
+
+	var json_contents = "";
+	
+	//READ JSON FILE
+	function readJSON(){
+		 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+		 function(fileSystem){
+			fileSystem.root.getFile("./icenium/books.json", null, 
+				function(fileEntry){
+					fileEntry.file(
+						function(file){
+							var reader = new FileReader();
+							reader.onloadend = function(evt) {
+								console.log("Read as text");
+								console.log(evt.target.result);
+								json_contents = evt.target.result;
+								return json_contents;
+							};
+							reader.readAsText(file);
+						}, fail);
+				}, fail);
+		 }, fail);
+	}
+	
+		
+    function fail(evt) {
+        console.log(evt.target.error.code);
+    }
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
