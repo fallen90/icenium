@@ -81,7 +81,7 @@
 							$('.progress').fadeIn();
 									$.post( "http://w2a.us.to/cyborg/wat/getpackage.php", { wattcode: wattcode,chapters: chaptersJSON,accesscode: accesscode } )
 										 .done(function( data ) {
-											try{
+									//		try{
 												write("Download Done!...");
 												var packs = $.parseJSON(data);
 												$('#txt').attr('rel',basename(packs['txt'])).removeClass("notyet");
@@ -92,13 +92,13 @@
 												json['bookid'] = packs['bookid'];
 												json['bookid']['zip'] = basename(packs['zip']);
 												json['bookid']['txt'] = basename(packs['txt']);
-												var json_contents  = $.parseJSON(json);
+											var json_contents  = $.parseJSON(json);
 												saveJSON(json_contents);
 												$('.progress').fadeOut();
-											} catch(ex){
-											console.log(ex );
-												write( "Error Fetching Packages");
-											}
+									//		} catch(ex){
+											//console.log(ex );
+											//	write( "Error Fetching Packages");
+									//		}
 										 });
 										 
 										
@@ -271,20 +271,14 @@
 										console.log("Writing: " + json);
 										writer.write(json);
 										writer.onwriteend = function(evt){
-												console.log("Writing Success");
+												console.log(evt.target.result);
 											}
 									
 										
 								 }, fail);
-							}
-						);
-					}, function (error) {
-					   alert(error.code);
-					}
-				);
-		   }, function (error) {
-				   alert(error.code);
-		   });
+							},fail);
+					}, fail	);
+		   }, fail);
 	}
 	
 
