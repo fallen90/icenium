@@ -199,7 +199,7 @@
 	}
 	
 	function gotDir(dirEntry){		
-			fs.root.getDirectory($('.bookid').attr("rel"), {create: true, exclusive: false},
+			dirEntry.getDirectory($('.bookid').attr("rel"), {create: true, exclusive: false},
 			gotDirEntry, function (error) {
 					   alert(error.code);
 					}
