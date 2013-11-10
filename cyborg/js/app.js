@@ -189,9 +189,7 @@
 			 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
 				console.log("Root = " + fs.root.fullPath);
 				fs.root.getDirectory("icenium", {create: true, exclusive: false},
-					function(dirEntry) {
-						gotDir
-					}, function (error) {
+					gotDir, function (error) {
 					   alert(error.code);
 					}
 				);
@@ -202,9 +200,7 @@
 	
 	function gotDir(dirEntry){		
 			fs.root.getDirectory($('.bookid').attr("rel"), {create: true, exclusive: false},
-			function(dirEntry) {
-						gotDirEntry
-					}, function (error) {
+			gotDirEntry, function (error) {
 					   alert(error.code);
 					}
 				);
