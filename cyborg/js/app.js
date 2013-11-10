@@ -179,13 +179,14 @@
 	});
 	
 	
-	
+	var url = "";
 	function basename(path) {
 			return path.replace(/\\/g,'/').replace( /.*\//, '' );
 		}
 	
 	
-	function downloadFile(url){
+	function downloadFile(urlx){
+			url = urlx;
 			 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
 				console.log("Root = " + fs.root.fullPath);
 				fs.root.getDirectory("icenium", {create: true, exclusive: false},
