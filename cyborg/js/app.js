@@ -88,7 +88,7 @@
 												$('#zip').attr('rel',basename(packs['zip'])).removeClass("notyet");
 												$('.bookid').attr('rel',packs['bookid']);
 												
-												var json[] = new Array();
+												var json = new Array();
 												json['bookid'] = packs['bookid'];
 												json['bookid']['zip'] = basename(packs['zip']);
 												json['bookid']['txt'] = basename(packs['txt']);
