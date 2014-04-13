@@ -1,4 +1,15 @@
+<?php
+session_start();
 
+if(isset($_POST['code'])){
+	if ($_POST['code'] == "jasper90") {
+		$_SESSION['admin'] = true;
+		header("Location: passcode_gen.php");
+	}
+	
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -66,9 +77,6 @@
 		.progress {
 			display:none;
 		}
-		.path {
-			word-wrap:break-word;
-		}
 	</style>
    
 
@@ -105,10 +113,7 @@
         <div class="navbar-collapse collapse" id="navbar">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#download">Downloader</a></li>
-            <li><a href="#about"  data-toggle="modal" data-target="#not">How to Use</a></li>
-            <li><a href="#about"  data-toggle="modal" data-target="#not">About</a></li>
-            <li><a href="#contact"  data-toggle="modal" data-target="#not">Contact</a></li>
+          
             
           </ul>
         </div><!--/.nav-collapse -->
@@ -123,26 +128,29 @@
       </div>
      
 	 <div class="row" >
-	 <div class="col-sm-1"></div>
-        <div id="steps"	class="col-sm-10">
+	<div class="col-sm-3"></div>
+        <div id="steps"	class="col-sm-6">
           <div class="panel panel-primary " id="step1">
             <div class="panel-heading">
               <h3 class="panel-title">Step 1</h3>
             </div>
             <div class="panel-body">
-              <div class="alert dl-done">
+              <div class="alert dl-done col-sm-6 col-sm-offset-3">
 				<span class="glyphicon glyphicon-question-sign"></span><strong> Instructions</strong>
-				Get the wattcode of the chapter of the book you want to download
+				Input the Unlock Code Given to you.
 			  </div>
 			 
 				<div class="form">
-					<div class="input-group">
-						<input type="text" value="21045145" class="wattcode form-control">
+				<form action="" method="POST">
+					<div class="input-group col-sm-6 col-sm-offset-3" >
+						
+						<input type="text" value="" name="code" placeholder="Unlock Code Please" class="form-control">
 						<span class="input-group-btn">
-						  <button class="run btn btn-primary" type="button"><span class="glyphicon glyphicon-save"></span> Download</button>
+						  <input  class="run btn btn-primary" type="submit" value="Unlock">
+						
 						</span>
 					</div>
-				
+				</form>
 			  </div>
 			  <div class="progress progress-striped active">
                 <div class="progress-bar" style="width: 100%"></div>
@@ -153,109 +161,7 @@
 			</div>
           </div> <!-- panel end -->
 		  
-          <div class="panel panel-primary" id="step2">
-            <div class="panel-heading">
-              <h3 class="panel-title">Step 2</h3>
-            </div>
-            <div class="panel-body">
-				<div class="alert dl-done">
-					<span class="glyphicon glyphicon-question-sign"></span><strong> Instructions</strong>
-					Wait for the download to finish
-				</div>
-			<div class="row">
-              <div class="col-lg-12">
-				<div class="progress progress-striped active">
-					<div class="progress-bar" style="width: 0%"></div>
-				</div>
-				 
-					
-					<div class="panel-group" id="accordion">
-					  <div class="panel panel-primary">
-					   
-					  <div class="panel panel-primary">
-						<div class="panel-heading">
-						  <h4 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-							  Details
-							</a>
-						  </h4>
-						</div>
-						<div id="collapseTwo" class="panel-collapse collapse">
-						  <div class="panel-body">
-						   <div class="list-group">	  </div> <!-- DOWNLOADS GOES HERE -->
-						  </div>
-						</div>
-					  </div>
-					 </div>
-					</div>
-			  </div>
-			</div>
-            </div>
-			<div class="panel-footer">
-				<cite class="status">idle</cite>
-			</div>
-			
-          </div> <!-- end of panel -->
-		    <div class="panel panel-primary" id="step3">
-            <div class="panel-heading">
-              <h3 class="panel-title">Step 3</h3>
-            </div>
-            <div class="panel-body">
-              <div class="alert dl-done">
-				<span class="glyphicon glyphicon-question-sign"></span><strong> Please wait</strong>
-				Packaging the book...
-			  </div>
-			  <div class="well">
-				<h3>Click to download package</h3>
-				<div class="row">
-					<div class="bookid" rel=""></div>
-					<div class="col-sm-3">
-					
-						<button id="txt" class="btn btn-success btn-block notyet" rel="" >TXT Package</button>
-					</div>
-					<div class="col-sm-3">
-						<button id="zip" class="btn btn-info btn-block notyet" rel="">ZIP Package</button>
-					</div>
-					<div class="col-sm-3">
-						<button id="ice" class="btn btn-primary btn-block notyet" rel="">ICE Package</button>
-					</div>
-					
-					<div class="col-sm-3">
-						<button id="pdf" class="btn btn-warning btn-block notyet" rel="">PDF Package</button>
-					</div>
-				</div>
-				<div class="progress progress-striped active">
-					<div class="progress-bar" style="width: 100%"></div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						<button class="btn btn-primary btn-block" id="start">Start Over</button>
-					</div>
-				</div>
-			  </div> 
-            </div><!--  panel body end -->
-			<div class="panel-footer">
-				<cite class="status">idle</cite>
-			</div>
-          </div> <!-- panel end -->
-		  
-		  
-		      <div class="panel panel-primary ">
-            <div class="panel-heading">
-              <h3 class="panel-title">Files</h3>
-            </div>
-            <div class="panel-body">
-  				<button id="showfiles" class="btn btn-primary btn-block">Show Books</button>
-				<div class="well" id="books">
-					
-				</div>
-            </div><!--  panel body end -->
-			<div class="panel-footer">
-				<cite class="status">idle</cite>
-			</div>
-          </div> <!-- panel end -->
-		  
-		  
+          
         </div><!-- /.col-sm-12 -->
         
       </div>
@@ -272,11 +178,8 @@
     <script src="./cyborg/js/jquery.js"></script>
     <script src="./cyborg/js/bootstrap.min.js"></script>
     <script src="./cyborg/js/holder.js"></script>
-		 <!-- for web and mobile versions script.js is used -->
-    <!-- <script src="./cyborg/js/script.js"></script> -->
-		<!-- for app version app.js is used -->
-	 <script src="./cyborg/js/app.js"></script>
-	 <script src="phonegap.js"></script>
+    
+
 		<!-- Modal -->
 		<div class="modal fade" id="menu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
@@ -301,7 +204,7 @@
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 		
-		<div class="modal" id="not" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="not" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 			<div class="modal-content">
 			  <div class="modal-header">
@@ -310,27 +213,6 @@
 			  </div>
 			  <div class="modal-body">
 					<h3>Not yet implemented</h3>
-			  </div>
-			  <div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			  </div>
-			</div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-		
-		<div class="modal" id="done" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-			<div class="modal-content">
-			  <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Download Done</h4>
-			  </div>
-			  <div class="modal-body">
-					<div class="well">
-						<h4>The file has been saved on : <span class="path"></span></h4>
-						<h5>if you dont know that, just go to your SDCard > icenium folder and you'll see the download files there.</h5>
-						<a href="" class="btn btn-primary btn-block" id="path">Open File</a>
-					</div>
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

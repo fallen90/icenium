@@ -1,0 +1,1 @@
+Singkwenta (50)

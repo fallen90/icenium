@@ -5,7 +5,7 @@ ini_set('max_execution_time', 300);
 //get book url
 //get all parts
 
-$wattpadcode = $_GET['wattcode'];
+$wattpadcode = ($_GET['wattcode']);
 $bookid  ="";
 $chapter_url_data = doCurl("http://m.wattpad.com/go?id=" . $wattpadcode);
 
@@ -50,8 +50,8 @@ if (strpos($chapter_url_data,'gopart.php?id=') !== false) {
 			} else {
 				echo "error occured on fetching chapters";
 			}
-		} else {
-			echo "error in fetching chapters";
+		} else if(strpos($book_url_data,'The title you requested is no longer available.') == true) {
+			echo "The title you requested is no longer available.";
 		} //end check book url
 	
 	

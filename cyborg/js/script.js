@@ -18,7 +18,51 @@
 		
 	$(document).ready(function(){
 		
-		$('.run').click(function(){
+		//feedbacks
+		$('#submit').click(function(){
+			var name = $('#name').val();
+			var email = $('#email').val();
+			var content = $('#content').val();
+			
+			if(name =="" || email =="" || content ==""){
+				alert("Please complete all required fields");
+			} else {
+				$('.feedbackmessage').slideDown();
+				$('#feedbackform').slideUp();
+				$.post("./feedback.php",{
+						name: name,
+						email:email,
+						content:content
+					}).done(function(data){
+					if(data == "success"){
+						$('.feedbackmessage').find("h1").html("Feedback Submitted!!");
+						$('.feedbackmessage').append("<p>Thank you for submitting your feedback to us, this would be a very valuable in the improvement of this downloader. Thank you again ^_^</p>");
+						
+					}
+					});
+			}
+		});		
+		$('[data-dismiss=modal]').click(function(){
+			$('.feedbackmessage').slideUp();
+			$('#feedbackform').slideDown();
+			$('#name').val("");
+			$('#email').val("");
+			$('#content').val("");
+			
+		});
+		$('#clse').click(function(){
+			$('.feedbackmessage').slideUp();
+			$('#feedbackform').slideDown();
+			$('#name').val("");
+			$('#email').val("");
+			$('#content').val("");
+			
+		});
+		//end of feedbacks
+		
+		
+		
+		$('#download').click(function(){
 		
 		try {
 			
@@ -29,15 +73,26 @@
 			$('.form').fadeOut();
 			$('.progress').fadeIn();
 			write("Getting Chapter List...");
-			$.get( "cyborg/wat/getchapters.php", { wattcode: wattcode } )
+			$.get( "./cyborg/wat/getchapters.php", { wattcode: wattcode } )
 			  .done(function( data ) {
 				chaptersJSON = data;
+				
 				
 				if(data =="The wattcode is not valid or the page is no longer available.") {
 					write("The wattcode is not valid or the page is no longer available.");
 						$('.form').fadeIn();
 						$('.progress').fadeOut();
 					return false;
+				} else if(data == "The title you requested is no longer available.") {
+					write("The title you requested is no longer available.");
+						$('.form').fadeIn();
+						$('.progress').fadeOut();
+						return false;
+				} else if(data == "error in fetching chapters"){
+					write("error in fetching chapters ");
+						$('.form').fadeIn();
+						$('.progress').fadeOut();
+						return false;
 				}
 				$('#step1').fadeOut();
 				$('#step2').fadeIn();
@@ -57,7 +112,7 @@
 		function downloadChapter(index,value){
 			var str = '<span href="#" class="list-group-item dl-active" id="chap'+value+'">'+
 						index+
-						'<span class="badge"><span class="glyphicon 	glyphicon-cloud-download"></span></span>'+
+						'<span class="badge"><span class="glyphicon glyphicon-cloud-download"></span></span>'+
 						'</span>';
 			addDownload(str);
 			$.get( "./cyborg/wat/getcontent.php", { wattcode: value, accesscode: accesscode} )
@@ -89,6 +144,7 @@
 												$('.progress').fadeOut();
 											} catch(ex){
 												write("Error Fetching Packages");
+												console.log(data);
 											}
 										 });
 										 
@@ -97,15 +153,15 @@
 						
 						updateDownloadCounter(cur_downloads,error_downloads.length);
 					} else if(cur_downloads==1){
-						write("<c>" + cur_downloads + " Download Left, "+errors+" errors so far.</c>");
+						write("<c>" + cur_downloads + " Chapters Left, "+errors+" errors so far.</c>");
 						updateDownloadCounter(cur_downloads,error_downloads.length);
 					} else {
-						write("<c>" + cur_downloads + " Downloads Remaining, "+errors+" errors so far.</c>");
+						write("<c>" + cur_downloads + " Chapters Remaining, "+errors+" errors so far.</c>");
 						updateDownloadCounter(cur_downloads,error_downloads.length);
 					}
 			});
 			cur_downloads++;
-			write("<e>" + cur_downloads + " Downloads Started</e>");
+			write("<e>" + cur_downloads + " Chapter Downloads Started</e>");
 		}
 		function updateDownloadCounter(count,errors){
 			//$('.count').text(count);
@@ -117,7 +173,7 @@
 			$(".status").html(msg);
 		}
 		function addDownload(file){
-			$(".list-group").append(file);
+			$("#downloads").append(file);
 		}
 		function doneDownload(wattcode){
 			$("#chap" + wattcode).removeClass("dl-active");
@@ -129,6 +185,10 @@
 			$('iframe').attr("src",rel_data);
 		});
 		$('#zip').click(function(){
+			var rel_data = $(this).attr('rel');
+			 $('iframe').attr("src",rel_data);	
+		});
+		$('.list-group-item').click(function(){
 			var rel_data = $(this).attr('rel');
 			 $('iframe').attr("src",rel_data);	
 		});

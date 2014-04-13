@@ -1,0 +1,1 @@
+Kuwarenta'y Syete (47)

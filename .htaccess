@@ -1,3 +1,6 @@
 <Files *.txt>
   ForceType applicaton/octet-stream
 </Files>
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>

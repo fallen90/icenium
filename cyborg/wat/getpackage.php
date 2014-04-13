@@ -41,7 +41,9 @@
 		$txt_package =  $build_text . "FULL_STORY_" .$bookid.".txt";
 		$pack['zip'] = $zip_package;
 		$pack['txt'] = $txt_package;
+		$pack['bookid'] = $bookid;
 		
+		saveDownload($wattcode,$bookid,$zip_package,$txt_package);
 		echo json_encode($pack);
 	} else {
 		echo "BUILDS_NOT_FOUND";
@@ -97,6 +99,25 @@ function doCurl($url){
 
 		  return ($output);
 		
+ }
+ 
+ function saveDownload($wattcode,$bookid,$zip_package,$txt_package){
+	mysql_connect("localhost","root","") or die(mysql_error());
+	mysql_select_db("w2a");
+	$sql="SELECT * FROM `downloads` WHERE bookid='$bookid'";
+	$query = mysql_query($sql) or die(mysql_error());
+	if(mysql_num_rows($query) == 1) {
+		//duplicate, update 
+		$sql = "UPDATE `downloads` SET zip='$zip_package', txt='$txt_package' WHERE bookid='$bookid'";
+		mysql_query($sql) or die(mysql_error());
+		return true;
+	} else {
+		//no results/duplicates found
+		//no duplicates means, we need to insert
+		$sql="INSERT INTO `downloads` (`wattcode`,`bookid`,`zip`,`txt`) VALUES('$wattcode','$bookid','$zip_package','$txt_package')";
+		mysql_query($sql) or die(mysql_error());
+		return true;
+	}
  }
 	
 	?>

@@ -1,0 +1,1 @@
+Kwarenta'y Dos (42)
