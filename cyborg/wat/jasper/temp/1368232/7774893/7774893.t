@@ -1,1 +1,0 @@
-Kuwarenta (40)

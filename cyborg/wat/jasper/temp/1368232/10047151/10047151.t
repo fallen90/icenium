@@ -1,1 +1,0 @@
-Singkwenta'y Dos (52)

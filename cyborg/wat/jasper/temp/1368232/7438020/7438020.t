@@ -1,1 +1,0 @@
-Trenta'y Otso (38)

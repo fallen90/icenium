@@ -1,1 +1,0 @@
-Kuwarenta'y Uno (41)

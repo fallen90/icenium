@@ -1,1 +1,0 @@
-Trenta'y Singko (35)

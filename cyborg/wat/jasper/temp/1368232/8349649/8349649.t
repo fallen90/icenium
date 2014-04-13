@@ -1,1 +1,0 @@
-Kwarenta'y Tres (43)

@@ -1,1 +1,0 @@
-Kuwarenta'y Otso (48)

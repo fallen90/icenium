@@ -1,1 +1,0 @@
-Trenta'y Dos (32)

@@ -1,1 +1,0 @@
-Disi-syete (17)

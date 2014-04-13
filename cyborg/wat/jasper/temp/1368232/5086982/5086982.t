@@ -1,1 +1,0 @@
-Katorse't kalahati (14.5)

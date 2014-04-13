@@ -1,1 +1,0 @@
-Bente Otso (28) [MomentOfTruth]
