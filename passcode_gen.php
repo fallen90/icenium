@@ -6,7 +6,7 @@ if(!isset($_SESSION['admin'])){
 }
 
 if(isset($_POST['code'])){
-	mysql_connect("localhost","root","") or die(mysql_error());
+	mysql_connect("localhost","root","jasper90") or die(mysql_error());
 	mysql_select_db("w2a");
 	
 	$name    = $_POST['name'];
@@ -198,7 +198,7 @@ if(isset($_POST['code'])){
 								</thead>
 								<tbody>
 				<?php
-					mysql_connect("localhost","root","") or die(mysql_error());
+					mysql_connect("localhost","root","jasper90") or die(mysql_error());
 					mysql_select_db("w2a");
 					$sql="SELECT * FROM `passcode`";
 					$result = mysql_query($sql) or die(mysql_error());

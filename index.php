@@ -267,7 +267,7 @@ if(isset($_GET['lock'])){
 			  <div class="well">
 				<div class="list-group">
 				<?php
-					mysql_connect("localhost","root","") or die(mysql_error());
+					mysql_connect("localhost","root","jasper90") or die(mysql_error());
 					mysql_select_db("w2a");
 					$sql="SELECT * FROM `downloads`";
 					$result = mysql_query($sql) or die(mysql_error());

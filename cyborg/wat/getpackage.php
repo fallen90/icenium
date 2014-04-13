@@ -102,7 +102,7 @@ function doCurl($url){
  }
  
  function saveDownload($wattcode,$bookid,$zip_package,$txt_package){
-	mysql_connect("localhost","root","") or die(mysql_error());
+	mysql_connect("localhost","root","jasper90") or die(mysql_error());
 	mysql_select_db("w2a");
 	$sql="SELECT * FROM `downloads` WHERE bookid='$bookid'";
 	$query = mysql_query($sql) or die(mysql_error());
